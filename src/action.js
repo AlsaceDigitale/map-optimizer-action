@@ -17,9 +17,11 @@ const { isJsonTiledMap, optimizeMap } = require('map-optimizer');
         }
 
         for (let mapFile of mapFiles) {
+            console.info(`start processing ${mapFile}`)
             let mapDir = path.dirname(mapFile);
             let outputDir = path.resolve(process.env.GITHUB_WORKSPACE ? process.env.GITHUB_WORKSPACE : '.', mapDir);
             await optimizeMap(mapFile, outputDir, 1, 0xffffff00);
+            console.info(`done processing ${mapFile}`)
         }
     } catch (error) {
         console.error(error);
